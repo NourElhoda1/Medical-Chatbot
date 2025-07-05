@@ -1,0 +1,746 @@
+@prefix : <http://www.example.org/ontology/medicale#> .
+@prefix ex: <http://www.example.org/ontology-medicale#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.example.org/ontology/medicale#> .
+
+<http://www.example.org/ontology/medicale> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.example.org/ontology-medicale#aCommeSymptome
+ex:aCommeSymptome rdf:type owl:ObjectProperty ;
+                  rdfs:domain ex:Maladie ;
+                  rdfs:range ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#aCommeTraitement
+ex:aCommeTraitement rdf:type owl:ObjectProperty ;
+                    rdfs:domain ex:Maladie ;
+                    rdfs:range ex:Traitement .
+
+
+###  http://www.example.org/ontology-medicale#prescrit
+ex:prescrit rdf:type owl:ObjectProperty ;
+            rdfs:domain ex:Specialite ;
+            rdfs:range ex:Traitement .
+
+
+###  http://www.example.org/ontology-medicale#traite
+ex:traite rdf:type owl:ObjectProperty ;
+          rdfs:domain ex:Medicament ;
+          rdfs:range ex:Maladie .
+
+
+###  http://www.example.org/ontology/medicale#recoitReponse
+:recoitReponse rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf ex:prescrit .
+
+
+###  http://www.example.org/ontology/medicale#utiliseMédicament
+:utiliseMédicament rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf owl:topObjectProperty ;
+                   rdfs:domain ex:Traitement ;
+                   rdfs:range ex:Medicament .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.example.org/ontology-medicale#nom
+ex:nom rdf:type owl:DatatypeProperty ;
+       rdfs:range xsd:string .
+
+
+###  http://www.example.org/ontology-medicale#posologie
+ex:posologie rdf:type owl:DatatypeProperty ;
+             rdfs:domain ex:Medicament ;
+             rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.example.org/ontology-medicale#Maladie
+ex:Maladie rdf:type owl:Class .
+
+
+###  http://www.example.org/ontology-medicale#Medicament
+ex:Medicament rdf:type owl:Class .
+
+
+###  http://www.example.org/ontology-medicale#Specialite
+ex:Specialite rdf:type owl:Class .
+
+
+###  http://www.example.org/ontology-medicale#Symptome
+ex:Symptome rdf:type owl:Class .
+
+
+###  http://www.example.org/ontology-medicale#Traitement
+ex:Traitement rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.example.org/ontology-medicale#Amlodipine
+ex:Amlodipine rdf:type owl:NamedIndividual ,
+                       ex:Medicament ;
+              ex:traite ex:HypertensionArterielle ;
+              ex:posologie "2.5-10 mg, 1 fois par jour" .
+
+
+###  http://www.example.org/ontology-medicale#AmoxicillineAngine
+ex:AmoxicillineAngine rdf:type owl:NamedIndividual ,
+                               ex:Medicament ;
+                      ex:traite ex:AngineBacterienne ;
+                      ex:posologie "1 g, 2 fois par jour pendant 6 jours" .
+
+
+###  http://www.example.org/ontology-medicale#AnemieFerriprive
+ex:AnemieFerriprive rdf:type owl:NamedIndividual ,
+                             ex:Maladie ;
+                    ex:aCommeSymptome ex:Essoufflement ,
+                                      ex:Fatigue ,
+                                      ex:Paleur ;
+                    ex:aCommeTraitement ex:TraitementAnemie .
+
+
+###  http://www.example.org/ontology-medicale#AngineBacterienne
+ex:AngineBacterienne rdf:type owl:NamedIndividual ,
+                              ex:Maladie ;
+                     ex:aCommeSymptome ex:DifficulteAvaler ,
+                                       ex:Fièvre ,
+                                       ex:MauxGorge ;
+                     ex:aCommeTraitement ex:TraitementAngine .
+
+
+###  http://www.example.org/ontology-medicale#Asthme
+ex:Asthme rdf:type owl:NamedIndividual ,
+                   ex:Maladie ;
+          ex:aCommeSymptome ex:Essoufflement ,
+                            ex:OppressionThoracique ,
+                            ex:SifflementRespiratoire ,
+                            ex:TousNocturne ;
+          ex:aCommeTraitement ex:TraitementAsthme .
+
+
+###  http://www.example.org/ontology-medicale#BoutonsRouges
+ex:BoutonsRouges rdf:type owl:NamedIndividual ,
+                          ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#BruluresEstomac
+ex:BruluresEstomac rdf:type owl:NamedIndividual ,
+                            ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Cardiologie
+ex:Cardiologie rdf:type owl:NamedIndividual ,
+                        ex:Specialite .
+
+
+###  http://www.example.org/ontology-medicale#CephaleePulsatile
+ex:CephaleePulsatile rdf:type owl:NamedIndividual ,
+                              ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#CicatrisationLente
+ex:CicatrisationLente rdf:type owl:NamedIndividual ,
+                               ex:Symptome ;
+                      ex:aCommeTraitement :régime_alimentaire_contrôlé .
+
+
+###  http://www.example.org/ontology-medicale#ConjonctiviteNasale
+ex:ConjonctiviteNasale rdf:type owl:NamedIndividual ,
+                                ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Covid19
+ex:Covid19 rdf:type owl:NamedIndividual ,
+                    ex:Maladie ;
+           ex:aCommeSymptome ex:DouleursMusculaires ,
+                             ex:Essoufflement ,
+                             ex:Fatigue ,
+                             ex:Fievre ,
+                             ex:MalGorge ,
+                             ex:PerteGoutOdorat ,
+                             ex:TousSeche ;
+           ex:aCommeTraitement ex:TraitementCovid .
+
+
+###  http://www.example.org/ontology-medicale#CreamCorticoide
+ex:CreamCorticoide rdf:type owl:NamedIndividual ,
+                            ex:Medicament ;
+                   ex:traite ex:DermatiteAtopique ;
+                   ex:posologie "Application locale 1 à 2 fois par jour" .
+
+
+###  http://www.example.org/ontology-medicale#Demangeaisons
+ex:Demangeaisons rdf:type owl:NamedIndividual ,
+                          ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#DermatiteAtopique
+ex:DermatiteAtopique rdf:type owl:NamedIndividual ,
+                              ex:Maladie ;
+                     ex:aCommeSymptome ex:Demangeaisons ,
+                                       ex:PeauSeche ,
+                                       ex:RougeurPeau ;
+                     ex:aCommeTraitement ex:TraitementDermatite .
+
+
+###  http://www.example.org/ontology-medicale#Dermatologie
+ex:Dermatologie rdf:type owl:NamedIndividual ,
+                         ex:Specialite .
+
+
+###  http://www.example.org/ontology-medicale#DiabeteType2
+ex:DiabeteType2 rdf:type owl:NamedIndividual ,
+                         ex:Maladie ;
+                ex:aCommeSymptome ex:CicatrisationLente ,
+                                  ex:Fatigue ,
+                                  ex:PertePoidsInexpliquee ,
+                                  ex:SoifExcessive ,
+                                  ex:UrineFrequente ,
+                                  ex:VisionFloue ;
+                ex:aCommeTraitement ex:TraitementDiabeteType2 .
+
+
+###  http://www.example.org/ontology-medicale#Diarrhee
+ex:Diarrhee rdf:type owl:NamedIndividual ,
+                     ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#DifficulteAvaler
+ex:DifficulteAvaler rdf:type owl:NamedIndividual ,
+                             ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#DifficulteDeglutition
+ex:DifficulteDeglutition rdf:type owl:NamedIndividual ,
+                                  ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#DouleurFaciale
+ex:DouleurFaciale rdf:type owl:NamedIndividual ,
+                           ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#DouleurThoracique
+ex:DouleurThoracique rdf:type owl:NamedIndividual ,
+                              ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#DouleurUnilaterale
+ex:DouleurUnilaterale rdf:type owl:NamedIndividual ,
+                               ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#DouleursAbdominales
+ex:DouleursAbdominales rdf:type owl:NamedIndividual ,
+                                ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#DouleursMusculaires
+ex:DouleursMusculaires rdf:type owl:NamedIndividual ,
+                                ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#EcoulementNasal
+ex:EcoulementNasal rdf:type owl:NamedIndividual ,
+                            ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Endocrinologie
+ex:Endocrinologie rdf:type owl:NamedIndividual ,
+                           ex:Specialite .
+
+
+###  http://www.example.org/ontology-medicale#Essoufflement
+ex:Essoufflement rdf:type owl:NamedIndividual ,
+                          ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#EssoufflementEffort
+ex:EssoufflementEffort rdf:type owl:NamedIndividual ,
+                                ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Eternuements
+ex:Eternuements rdf:type owl:NamedIndividual .
+
+
+###  http://www.example.org/ontology-medicale#Fatigue
+ex:Fatigue rdf:type owl:NamedIndividual ,
+                    ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#FerFerograd
+ex:FerFerograd rdf:type owl:NamedIndividual ,
+                        ex:Medicament ;
+               ex:traite ex:AnemieFerriprive ;
+               ex:posologie "1 comprimé par jour pendant 3 mois" .
+
+
+###  http://www.example.org/ontology-medicale#Fievre
+ex:Fievre rdf:type owl:NamedIndividual ,
+                   ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Fièvre
+ex:Fièvre rdf:type owl:NamedIndividual .
+
+
+###  http://www.example.org/ontology-medicale#FrissonsCourbatures
+ex:FrissonsCourbatures rdf:type owl:NamedIndividual ,
+                                ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#GastroEnterite
+ex:GastroEnterite rdf:type owl:NamedIndividual ,
+                           ex:Maladie ;
+                  ex:aCommeSymptome ex:Diarrhee ,
+                                    ex:DouleursAbdominales ,
+                                    ex:Vomissements ;
+                  ex:aCommeTraitement ex:TraitementGastro .
+
+
+###  http://www.example.org/ontology-medicale#Gastroenterologie
+ex:Gastroenterologie rdf:type owl:NamedIndividual ,
+                              ex:Specialite .
+
+
+###  http://www.example.org/ontology-medicale#Grippe
+ex:Grippe rdf:type owl:NamedIndividual ,
+                   ex:Maladie ;
+          ex:aCommeSymptome ex:ConjonctiviteNasale ,
+                            ex:Fievre ,
+                            ex:FrissonsCourbatures ,
+                            ex:MalGorge ,
+                            ex:Toux ;
+          ex:aCommeTraitement ex:TraitementGrippe .
+
+
+###  http://www.example.org/ontology-medicale#Hydrochlorothiazide
+ex:Hydrochlorothiazide rdf:type owl:NamedIndividual ,
+                                ex:Medicament ;
+                       ex:traite ex:HypertensionArterielle ;
+                       ex:posologie "12.5-25 mg, 1 fois par jour le matin" .
+
+
+###  http://www.example.org/ontology-medicale#HypertensionArterielle
+ex:HypertensionArterielle rdf:type owl:NamedIndividual ,
+                                   ex:Maladie ;
+                          ex:aCommeSymptome ex:EssoufflementEffort ,
+                                            ex:MauxDeTeteOccipitaux ,
+                                            ex:PalpitationsCardiaques ,
+                                            ex:SaignementNez ;
+                          ex:aCommeTraitement ex:TraitementHypertension .
+
+
+###  http://www.example.org/ontology-medicale#Insuline
+ex:Insuline rdf:type owl:NamedIndividual ,
+                     ex:Medicament ;
+            ex:traite ex:DiabeteType2 ;
+            ex:posologie "Selon glycémie, adaptation individuelle" .
+
+
+###  http://www.example.org/ontology-medicale#Lisinopril
+ex:Lisinopril rdf:type owl:NamedIndividual ,
+                       ex:Medicament ;
+              ex:traite ex:HypertensionArterielle ;
+              ex:posologie "5-40 mg, 1 fois par jour" .
+
+
+###  http://www.example.org/ontology-medicale#LotionCalmante
+ex:LotionCalmante rdf:type owl:NamedIndividual ,
+                           ex:Medicament ;
+                  ex:traite ex:Varicelle ;
+                  ex:posologie "Application locale 2 fois par jour" .
+
+
+###  http://www.example.org/ontology-medicale#MalGorge
+ex:MalGorge rdf:type owl:NamedIndividual ,
+                     ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#MauxDeTeteOccipitaux
+ex:MauxDeTeteOccipitaux rdf:type owl:NamedIndividual ,
+                                 ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#MauxGorge
+ex:MauxGorge rdf:type owl:NamedIndividual ,
+                      ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Metformine
+ex:Metformine rdf:type owl:NamedIndividual ,
+                       ex:Medicament ;
+              ex:traite ex:DiabeteType2 ;
+              ex:posologie "500-850 mg, 2 fois par jour avec repas" .
+
+
+###  http://www.example.org/ontology-medicale#Migraine
+ex:Migraine rdf:type owl:NamedIndividual ,
+                     ex:Maladie ;
+            ex:aCommeSymptome ex:CephaleePulsatile ,
+                              ex:DouleurUnilaterale ,
+                              ex:Nausees ,
+                              ex:PhotophobePhonophobie ,
+                              ex:Vomissements ;
+            ex:aCommeTraitement ex:TraitementMigraine .
+
+
+###  http://www.example.org/ontology-medicale#Nausees
+ex:Nausees rdf:type owl:NamedIndividual ,
+                    ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Neurologie
+ex:Neurologie rdf:type owl:NamedIndividual ,
+                       ex:Specialite .
+
+
+###  http://www.example.org/ontology-medicale#NezBouche
+ex:NezBouche rdf:type owl:NamedIndividual ,
+                      ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Omeprazole
+ex:Omeprazole rdf:type owl:NamedIndividual ,
+                       ex:Medicament ;
+              ex:traite ex:RefluxGastroOesophagien ;
+              ex:posologie "20-40 mg, 1 fois par jour à jeun" .
+
+
+###  http://www.example.org/ontology-medicale#OppressionThoracique
+ex:OppressionThoracique rdf:type owl:NamedIndividual ,
+                                 ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Paleur
+ex:Paleur rdf:type owl:NamedIndividual ,
+                   ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#PalpitationsCardiaques
+ex:PalpitationsCardiaques rdf:type owl:NamedIndividual ,
+                                   ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Paracetamol
+ex:Paracetamol rdf:type owl:NamedIndividual ,
+                        ex:Medicament ;
+               ex:traite ex:Covid19 ,
+                         ex:Grippe ;
+               ex:posologie "500-1000 mg, 3-4 fois par jour max 4g/jour" .
+
+
+###  http://www.example.org/ontology-medicale#PeauSeche
+ex:PeauSeche rdf:type owl:NamedIndividual ,
+                      ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#PerteGoutOdorat
+ex:PerteGoutOdorat rdf:type owl:NamedIndividual ,
+                            ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#PertePoidsInexpliquee
+ex:PertePoidsInexpliquee rdf:type owl:NamedIndividual ,
+                                  ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#PhotophobePhonophobie
+ex:PhotophobePhonophobie rdf:type owl:NamedIndividual ,
+                                  ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Pneumologie
+ex:Pneumologie rdf:type owl:NamedIndividual ,
+                        ex:Specialite .
+
+
+###  http://www.example.org/ontology-medicale#RefluxGastroOesophagien
+ex:RefluxGastroOesophagien rdf:type owl:NamedIndividual ,
+                                    ex:Maladie ;
+                           ex:aCommeSymptome ex:BruluresEstomac ,
+                                             ex:DifficulteDeglutition ,
+                                             ex:DouleurThoracique ,
+                                             ex:RegurgitationAcide ;
+                           ex:aCommeTraitement ex:TraitementReflux .
+
+
+###  http://www.example.org/ontology-medicale#RegurgitationAcide
+ex:RegurgitationAcide rdf:type owl:NamedIndividual ,
+                               ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#RhiniteAllergique
+ex:RhiniteAllergique rdf:type owl:NamedIndividual ,
+                              ex:Maladie ;
+                     ex:aCommeSymptome ex:Eternuements ,
+                                       ex:NezBouche ,
+                                       ex:YeuxLarmoyants ;
+                     ex:aCommeTraitement ex:TraitementRhinite .
+
+
+###  http://www.example.org/ontology-medicale#RougeurPeau
+ex:RougeurPeau rdf:type owl:NamedIndividual ,
+                        ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#SaignementNez
+ex:SaignementNez rdf:type owl:NamedIndividual ,
+                          ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Salbutamol
+ex:Salbutamol rdf:type owl:NamedIndividual ,
+                       ex:Medicament ;
+              ex:traite ex:Asthme ;
+              ex:posologie "2 bouffées, 4 fois par jour max" .
+
+
+###  http://www.example.org/ontology-medicale#SifflementRespiratoire
+ex:SifflementRespiratoire rdf:type owl:NamedIndividual ,
+                                   ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Sinusite
+ex:Sinusite rdf:type owl:NamedIndividual ,
+                     ex:Maladie ;
+            ex:aCommeSymptome ex:DouleurFaciale ,
+                              ex:EcoulementNasal ,
+                              ex:NezBouche ;
+            ex:aCommeTraitement ex:TraitementSinusite .
+
+
+###  http://www.example.org/ontology-medicale#Smecta
+ex:Smecta rdf:type owl:NamedIndividual ,
+                   ex:Medicament ;
+          ex:traite ex:GastroEnterite ;
+          ex:posologie "1 sachet 3 fois par jour" .
+
+
+###  http://www.example.org/ontology-medicale#SoifExcessive
+ex:SoifExcessive rdf:type owl:NamedIndividual ,
+                          ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Sumatriptan
+ex:Sumatriptan rdf:type owl:NamedIndividual ,
+                        ex:Medicament ;
+               ex:traite ex:Migraine ;
+               ex:posologie "50-100 mg lors de la crise" .
+
+
+###  http://www.example.org/ontology-medicale#TousNocturne
+ex:TousNocturne rdf:type owl:NamedIndividual ,
+                         ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#TousSeche
+ex:TousSeche rdf:type owl:NamedIndividual ,
+                      ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Toux
+ex:Toux rdf:type owl:NamedIndividual ,
+                 ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#TraitementAnemie
+ex:TraitementAnemie rdf:type owl:NamedIndividual ,
+                             ex:Traitement ;
+                    :utiliseMédicament ex:FerFerograd .
+
+
+###  http://www.example.org/ontology-medicale#TraitementAngine
+ex:TraitementAngine rdf:type owl:NamedIndividual ,
+                             ex:Traitement ;
+                    :utiliseMédicament ex:AmoxicillineAngine .
+
+
+###  http://www.example.org/ontology-medicale#TraitementAsthme
+ex:TraitementAsthme rdf:type owl:NamedIndividual ,
+                             ex:Traitement ;
+                    :utiliseMédicament ex:Salbutamol .
+
+
+###  http://www.example.org/ontology-medicale#TraitementCovid
+ex:TraitementCovid rdf:type owl:NamedIndividual ,
+                            ex:Traitement ;
+                   :utiliseMédicament ex:Paracetamol .
+
+
+###  http://www.example.org/ontology-medicale#TraitementDermatite
+ex:TraitementDermatite rdf:type owl:NamedIndividual ,
+                                ex:Traitement ;
+                       :utiliseMédicament ex:CreamCorticoide .
+
+
+###  http://www.example.org/ontology-medicale#TraitementDiabeteType2
+ex:TraitementDiabeteType2 rdf:type owl:NamedIndividual ,
+                                   ex:Traitement ;
+                          :utiliseMédicament ex:Insuline ,
+                                             ex:Metformine .
+
+
+###  http://www.example.org/ontology-medicale#TraitementGastro
+ex:TraitementGastro rdf:type owl:NamedIndividual ,
+                             ex:Traitement ;
+                    :utiliseMédicament ex:Smecta .
+
+
+###  http://www.example.org/ontology-medicale#TraitementGrippe
+ex:TraitementGrippe rdf:type owl:NamedIndividual ,
+                             ex:Traitement ;
+                    :utiliseMédicament ex:Paracetamol .
+
+
+###  http://www.example.org/ontology-medicale#TraitementHypertension
+ex:TraitementHypertension rdf:type owl:NamedIndividual ,
+                                   ex:Traitement ;
+                          :utiliseMédicament ex:Amlodipine ,
+                                             ex:Hydrochlorothiazide ,
+                                             ex:Lisinopril .
+
+
+###  http://www.example.org/ontology-medicale#TraitementMigraine
+ex:TraitementMigraine rdf:type owl:NamedIndividual ,
+                               ex:Traitement ;
+                      :utiliseMédicament ex:Sumatriptan .
+
+
+###  http://www.example.org/ontology-medicale#TraitementReflux
+ex:TraitementReflux rdf:type owl:NamedIndividual ,
+                             ex:Traitement ;
+                    :utiliseMédicament ex:Omeprazole .
+
+
+###  http://www.example.org/ontology-medicale#TraitementRhinite
+ex:TraitementRhinite rdf:type owl:NamedIndividual .
+
+
+###  http://www.example.org/ontology-medicale#TraitementSinusite
+ex:TraitementSinusite rdf:type owl:NamedIndividual ,
+                               ex:Traitement ;
+                      :utiliseMédicament ex:Xylometazoline .
+
+
+###  http://www.example.org/ontology-medicale#TraitementVaricelle
+ex:TraitementVaricelle rdf:type owl:NamedIndividual ,
+                                ex:Traitement ;
+                       :utiliseMédicament ex:LotionCalmante ,
+                                          ex:Paracetamol .
+
+
+###  http://www.example.org/ontology-medicale#UrineFrequente
+ex:UrineFrequente rdf:type owl:NamedIndividual ,
+                           ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Varicelle
+ex:Varicelle rdf:type owl:NamedIndividual ,
+                      ex:Maladie ;
+             ex:aCommeSymptome ex:BoutonsRouges ,
+                               ex:Demangeaisons ,
+                               ex:Fatigue ;
+             ex:aCommeTraitement ex:TraitementVaricelle .
+
+
+###  http://www.example.org/ontology-medicale#VisionFloue
+ex:VisionFloue rdf:type owl:NamedIndividual ,
+                        ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Vomissements
+ex:Vomissements rdf:type owl:NamedIndividual ,
+                         ex:Symptome .
+
+
+###  http://www.example.org/ontology-medicale#Xylometazoline
+ex:Xylometazoline rdf:type owl:NamedIndividual ,
+                           ex:Medicament ;
+                  ex:traite ex:Sinusite ;
+                  ex:posologie "1 pulvérisation par narine 3 fois par jour" .
+
+
+###  http://www.example.org/ontology-medicale#YeuxLarmoyants
+ex:YeuxLarmoyants rdf:type owl:NamedIndividual .
+
+
+###  http://www.example.org/ontology/medicale#régime_alimentaire_contrôlé
+:régime_alimentaire_contrôlé rdf:type owl:NamedIndividual ,
+                                      ex:Traitement .
+
+ex:Vertige rdf:type owl:NamedIndividual , ex:Symptome .
+ex:Rhinite rdf:type owl:NamedIndividual , ex:Symptome .
+ex:IntoxicationAlimentaire rdf:type owl:NamedIndividual , ex:Maladie .
+ex:Allergie rdf:type owl:NamedIndividual , ex:Maladie .
+ex:Rhume rdf:type owl:NamedIndividual , ex:Maladie .
+
+# Fièvre
+ex:Grippe ex:aCommeSymptome ex:Fièvre .
+ex:Covid19 ex:aCommeSymptome ex:Fièvre .
+ex:InfectionBactérienne ex:aCommeSymptome ex:Fièvre .
+
+# Toux
+ex:Grippe ex:aCommeSymptome ex:Toux .
+ex:Covid19 ex:aCommeSymptome ex:Toux .
+ex:Asthme ex:aCommeSymptome ex:Toux .
+
+# Difficulté respiratoire
+ex:Asthme ex:aCommeSymptome ex:Essoufflement .
+ex:Covid19 ex:aCommeSymptome ex:Essoufflement .
+ex:Allergie ex:aCommeSymptome ex:Essoufflement .
+
+# Douleur thoracique
+ex:HypertensionArterielle ex:aCommeSymptome ex:DouleurThoracique .
+ex:RefluxGastroOesophagien ex:aCommeSymptome ex:DouleurThoracique .
+ex:AngineBacterienne ex:aCommeSymptome ex:DouleurThoracique .
+
+# Fatigue
+ex:DiabeteType2 ex:aCommeSymptome ex:Fatigue .
+ex:Grippe ex:aCommeSymptome ex:Fatigue .
+ex:AnemieFerriprive ex:aCommeSymptome ex:Fatigue .
+
+# Nausée
+ex:Migraine ex:aCommeSymptome ex:Nausees .
+ex:IntoxicationAlimentaire ex:aCommeSymptome ex:Nausees .
+
+# Douleur abdominale
+ex:GastroEnterite ex:aCommeSymptome ex:DouleursAbdominales .
+ex:RefluxGastroOesophagien ex:aCommeSymptome ex:DouleursAbdominales .
+
+# Douleurs musculaires
+ex:Grippe ex:aCommeSymptome ex:DouleursMusculaires .
+ex:Covid19 ex:aCommeSymptome ex:DouleursMusculaires .
+
+# Vertige
+ex:HypertensionArterielle ex:aCommeSymptome ex:Vertige .
+ex:AnemieFerriprive ex:aCommeSymptome ex:Vertige .
+
+# Rhinite
+ex:Grippe ex:aCommeSymptome ex:Rhinite .
+ex:Rhume ex:aCommeSymptome ex:Rhinite .
+
+
+ex:Rhinite rdf:type owl:NamedIndividual , ex:Symptome ;
+           rdfs:label "enrhumé"@fr , "nez qui coule"@fr , "rhume"@fr .
+ex:Vertige rdf:type owl:NamedIndividual , ex:Symptome ;
+           rdfs:label "vertige"@fr , "étourdissement"@fr , "sensation de tête qui tourne"@fr .
+           
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
