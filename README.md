@@ -25,7 +25,7 @@ An intelligent medical chatbot that uses a semantic ontology (OWL/Turtle) and in
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/medical-chatbot.git
+   git clone https://github.com/NourElhoda1/Medical-Chatbot.git
    cd medical-chatbot
    ```
 
