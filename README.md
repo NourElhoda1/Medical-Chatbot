@@ -51,7 +51,7 @@ An intelligent medical chatbot that uses a semantic ontology (OWL/Turtle) and in
 
 5. **Test connection:**
 
-   Go to `http://localhost:5000/health` or use a tool like Postman to test the endpoint.
+   Go to `http://localhost:5000` or use a tool like Postman to test the endpoint.
 
 ##  Ontology
 
